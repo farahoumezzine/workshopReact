@@ -55,3 +55,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.nav-link.active {
+  font-weight: bold;
+}

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Col, Button, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const Event = ({ id, name, price, tickets, participants, image, isLiked, onBook, onLike }) => {
   const [isBooked, setIsBooked] = useState(false);
   const [showBookingMessage, setShowBookingMessage] = useState(false);
+  const navigate = useNavigate();
 
   const handleBooking = () => {
     if (tickets > 0 && !isBooked) {
@@ -23,7 +25,12 @@ const Event = ({ id, name, price, tickets, participants, image, isLiked, onBook,
       <Card className="h-100">
         <Card.Img variant="top" src={image} />
         <Card.Body className="p-3">
-          <Card.Title>{name}</Card.Title>
+          <Card.Title 
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate(`/events/${encodeURIComponent(name)}`)}
+          >
+            {name}
+          </Card.Title>
           <Card.Text>
             Prix: {price}€
             <br />
