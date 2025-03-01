@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Alert } from 'react-bootstrap';
 import Event from './Event';
-import eventsData from '../data/events.json';
+import { getallEvents, deleteEvent } from '../services/api';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     console.log("Composant Events monté");
-    setEvents(eventsData.events);
-    
-    // Afficher le message de bienvenue après le montage
+    fetchEvents();
     setShowWelcome(true);
     
-    // Masquer le message après 3 secondes
     const timer = setTimeout(() => {
       setShowWelcome(false);
     }, 3000);
@@ -24,6 +22,16 @@ const Events = () => {
       clearTimeout(timer);
     };
   }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const response = await getallEvents();
+      setEvents(response.data);
+    } catch (error) {
+      setError("Erreur lors du chargement des événements");
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     console.log("État des événements mis à jour:", events);
@@ -54,6 +62,16 @@ const Events = () => {
     }));
   };
 
+  const handleDelete = async (eventId) => {
+    try {
+      await deleteEvent(eventId);
+      setEvents(events.filter(event => event.id !== eventId));
+    } catch (error) {
+      setError("Erreur lors de la suppression de l'événement");
+      console.error(error);
+    }
+  };
+
   return (
     <Container>
       {showWelcome && (
@@ -74,6 +92,7 @@ const Events = () => {
             isLiked={event.isLiked}
             onBook={handleBooking}
             onLike={handleLike}
+            onDelete={handleDelete}
           />
         ))}
       </Row>

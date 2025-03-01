@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Col, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const Event = ({ id, name, price, tickets, participants, image, isLiked, onBook, onLike }) => {
+const Event = ({ id, name, price, tickets, participants, image, isLiked, onBook, onLike, onDelete }) => {
   const [isBooked, setIsBooked] = useState(false);
   const [showBookingMessage, setShowBookingMessage] = useState(false);
   const navigate = useNavigate();
@@ -52,6 +52,13 @@ const Event = ({ id, name, price, tickets, participants, image, isLiked, onBook,
 
           <div className="d-flex justify-content-between">
             <Button 
+              onClick={() => navigate(`/events/update/${id}`)}
+              variant="warning"
+              className="me-2"
+            >
+              Update Event
+            </Button>
+            <Button 
               onClick={handleBooking}
               disabled={tickets === 0}
               variant={tickets === 0 ? "secondary" : "primary"}
@@ -64,6 +71,14 @@ const Event = ({ id, name, price, tickets, participants, image, isLiked, onBook,
               variant={isLiked ? "danger" : "outline-danger"}
             >
               {isLiked ? "Dislike" : "Like"}
+            </Button>
+
+            <Button 
+              onClick={() => onDelete(id)}
+              variant="danger"
+              className="me-2"
+            >
+              Delete Event
             </Button>
           </div>
         </Card.Body>

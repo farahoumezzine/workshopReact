@@ -1,0 +1,40 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "name": "Festival international de carthage",
+      "price": 30,
+      "tickets": 10,
+      "participants": 10,
+      "image": "/assets/images/carthage.jpg",
+      "isLiked": false
+    },
+    {
+      "id": "2",
+      "name": "Festival de la médina de Tunis",
+      "price": 15,
+      "tickets": 4,
+      "participants": 30,
+      "image": "/assets/images/tunis.jpg",
+      "isLiked": false
+    },
+    {
+      "id": "3",
+      "name": "Journée cinématographiques de carthage (JCC)",
+      "price": "80",
+      "tickets": 20,
+      "participants": 35,
+      "image": "/assets/images/jcc.jpg",
+      "isLiked": false
+    },
+    {
+      "id": "667b",
+      "name": "Douz festival",
+      "price": "44",
+      "tickets": "500",
+      "participants": 0,
+      "image": "https://imgs.search.brave.com/iMM_5pK5I8MD9dfNlCw9A29EmdK8d1RY_voOV5w0JsI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90dW5p/c2llLmNvL3VwbG9h/ZHMvaW1hZ2VzL2Nv/bnRlbnQvenJhb3Vh/LWZlc3RpdmFsLTI3/MDgxOC0wOS5qcGc",
+      "isLiked": false
+    }
+  ]
+}

@@ -24,6 +24,13 @@ const NavigationBar = () => {
             >
               Events
             </Nav.Link>
+            <Nav.Link 
+              as={NavLink} 
+              to="/events/add"
+              className={({ isActive }) => isActive ? "active text-decoration-underline" : ""}
+            >
+              Add Event
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

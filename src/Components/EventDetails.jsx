@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Card, Button } from 'react-bootstrap';
-import eventsData from '../data/events.json';
+import { Container, Card, Button, Alert } from 'react-bootstrap';
+import { getallEvents } from '../services/api';
 
 const EventDetails = () => {
-  const { name } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  
-  const event = eventsData.events.find(
-    e => e.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
-  );
+  const [event, setEvent] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const response = await getallEvents(id);
+        setEvent(response.data);
+      } catch (error) {
+        setError("Event does not exist");
+      }
+    };
+    fetchEvent();
+  }, [id]);
+
+  if (error) {
+    return (
+      <Container className="mt-4">
+        <Alert variant="danger">{error}</Alert>
+      </Container>
+    );
+  }
 
   if (!event) {
-    return navigate('/not-found');
+    return <div>Loading...</div>;
   }
 
   return (
