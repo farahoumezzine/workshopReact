@@ -6,7 +6,8 @@
       "price": 30,
       "tickets": 10,
       "participants": 10,
-      "image": "/assets/images/carthage.jpg"
+      "image": "/assets/images/carthage.jpg",
+      "isLiked": false
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "price": 15,
       "tickets": 4,
       "participants": 30,
-      "image": "/assets/images/tunis.jpg"
+      "image": "/assets/images/tunis.jpg",
+      "isLiked": false
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "price": 7,
       "tickets": 20,
       "participants": 35,
-      "image": "/assets/images/jcc.jpg"
+      "image": "/assets/images/jcc.jpg",
+      "isLiked": false
     }
   ]
 }
